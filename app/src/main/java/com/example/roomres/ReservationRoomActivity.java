@@ -152,7 +152,7 @@ public class ReservationRoomActivity extends AppCompatActivity {
     }
 
     public void deleteReservation(Reservation reservation) {
-        final String url = "http://anbo-roomreservationv3.azurewebsites.net½/api/reservations/" + reservation.getId();
+        final String url = "http://anbo-roomreservationv3.azurewebsites.net/api/reservations/" + reservation.getId();
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder().url(url).delete().build();
         client.newCall(request).enqueue(new Callback() {
