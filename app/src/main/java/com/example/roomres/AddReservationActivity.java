@@ -101,13 +101,14 @@ public class AddReservationActivity extends AppCompatActivity {
             try {
                 Response response = client.newCall(request).execute();
                 if (response.isSuccessful()) {
-                    return response.body().string();
+                    String messageSucces =  "Added to Datbase " + response.body().string();
+                    return messageSucces;
                 } else {
                     String message = url + "\n" + response.code() + " " + response.message();
                     return message;
                 }
             } catch (IOException ex) {
-                Log.e("BOOKS", ex.getMessage());
+                Log.e("TEE", ex.getMessage());
                 return ex.getMessage();
             }
         }
@@ -117,7 +118,7 @@ public class AddReservationActivity extends AppCompatActivity {
             super.onPostExecute(jsonString);
             TextView messageView = findViewById(R.id.add_reservation_message);
             messageView.setText(jsonString);
-            Log.d("MINE", jsonString);
+            Log.d("TEE", jsonString);
             //  finish();
         }
 
@@ -126,7 +127,7 @@ public class AddReservationActivity extends AppCompatActivity {
             super.onCancelled(message);
             TextView messageView = findViewById(R.id.add_reservation_message);
             messageView.setText(message);
-            Log.d("MINE", message);
+            Log.d("TEE", message);
             //finish();
         }
     }
