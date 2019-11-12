@@ -15,6 +15,7 @@ import android.widget.ListView
 import android.widget.TextView
 import android.widget.Toast
 
+
 import com.example.roomres.MODELS.Room
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -26,6 +27,16 @@ import okhttp3.Callback
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.Response
+import androidx.core.content.ContextCompat.getSystemService
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+import kotlinx.android.synthetic.main.activity_reservationroom.*
+import kotlinx.android.synthetic.main.activity_room.*
+import androidx.core.content.ContextCompat.getSystemService
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+import androidx.core.app.ComponentActivity
+import androidx.core.app.ComponentActivity.ExtraData
+import androidx.core.content.ContextCompat.getSystemService
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 
 class RoomActivity : AppCompatActivity() {
 
@@ -33,7 +44,43 @@ class RoomActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_room)
 
+        setSupportActionBar(toolRoom as Toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_arrow_back_black_24dp)
+
         getDataUsingOkHttpEnqueue()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_main,menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    // actions on click menu items
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.login_item -> {
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+                return true // true: menu processing done, no further actions
+            }
+            R.id.room_item -> {
+                val intentRoom = Intent(this, RoomActivity::class.java)
+                startActivity(intentRoom)
+                return true // true: menu processing done, no further actions
+            }
+            R.id.reservation_item -> {
+                val intentReservation = Intent(this, ReservationRoomActivity::class.java)
+                startActivity(intentReservation)
+                return true // true: menu processing done, no further actions
+            }
+            R.id.add_item -> {
+                val intentAdd = Intent(this, AddReservationActivity::class.java)
+                startActivity(intentAdd)
+                return true // true: menu processing done, no further actions
+            }
+            else -> return super.onOptionsItemSelected(item)
+        }
     }
 
     private fun getDataUsingOkHttpEnqueue() {
@@ -50,7 +97,7 @@ class RoomActivity : AppCompatActivity() {
                     runOnUiThread { populateList(jsonString) }
                 } else {
                     runOnUiThread {
-                        val messageView = findViewById<TextView>(R.id.main_message_textview)
+                        val messageView = main_message_textview
                         messageView.text = URI + "\n" + response.code + " " + response.message
                     }
                 }
@@ -58,7 +105,7 @@ class RoomActivity : AppCompatActivity() {
 
             override fun onFailure(call: Call, ex: IOException) {
                 runOnUiThread {
-                    val messageView = findViewById<TextView>(R.id.main_message_textview)
+                    val messageView = main_message_textview
                     messageView.text = ex.message
                 }
             }
@@ -69,7 +116,7 @@ class RoomActivity : AppCompatActivity() {
         val gson = GsonBuilder().create()
         Log.d("ROA", jsonString)
         val rooms = gson.fromJson(jsonString, Array<Room>::class.java)
-        val listView = findViewById<ListView>(R.id.rooms_Listview)
+        val listView = rooms_Listview
         val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, rooms)
         listView.adapter = adapter
         listView.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->

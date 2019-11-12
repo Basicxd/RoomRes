@@ -6,12 +6,24 @@
     android:layout_height="match_parent"
     tools:context=".AddReservationActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/toolbar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
     <TextView
         android:id="@+id/textViewAdd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Add Reservation"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/add_fromTime_DateButton"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
         android:textSize="@dimen/TextSize"/>
 
     <Button

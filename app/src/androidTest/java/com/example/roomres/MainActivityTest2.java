@@ -44,9 +44,21 @@ public class MainActivityTest2 {
             e.printStackTrace();
         }
 
-        ViewInteraction button = onView(
+        ViewInteraction buttonudenlogin = onView(
                 allOf(withId(R.id.uden_login_button)));
-        button.check(matches(isDisplayed()));
+        buttonudenlogin.check(matches(isDisplayed()));
+
+        ViewInteraction buttonLogin = onView(
+                allOf(withId(R.id.button_login)));
+        buttonLogin.check(matches(isDisplayed()));
+
+        ViewInteraction buttonRegister = onView(
+                allOf(withId(R.id.button_Register)));
+        buttonRegister.check(matches(isDisplayed()));
+
+        ViewInteraction buttonSignOut = onView(
+                allOf(withId(R.id.button_signOut)));
+        buttonSignOut.check(matches(isDisplayed()));
 
         ViewInteraction editText = onView(withId(R.id.email_Edittext));
         editText.perform(replaceText("m@m.dk"));

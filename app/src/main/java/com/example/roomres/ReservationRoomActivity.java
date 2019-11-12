@@ -62,6 +62,38 @@ public class ReservationRoomActivity extends AppCompatActivity {
         getDataUsingOkHttpEnqueue();
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.login_item:
+                Intent intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
+                return true; // true: menu processing done, no further actions
+            case R.id.room_item:
+                Intent intentRoom = new Intent(this, RoomActivity.class);
+                startActivity(intentRoom);
+                return true; // true: menu processing done, no further actions
+            case R.id.reservation_item:
+                Intent intentReservation = new Intent(this, ReservationRoomActivity.class);
+                startActivity(intentReservation);
+                return true; // true: menu processing done, no further actions
+            case R.id.add_item:
+                Intent intentAdd = new Intent(this, AddReservationActivity.class);
+                startActivity(intentAdd);
+                return true; // true: menu processing done, no further actions
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+
     public void addReservation(View view) {
         Intent intent = new Intent(this, AddReservationActivity.class);
         intent.putExtra(AddReservationActivity.ROOMID, room.getId());
@@ -109,6 +141,8 @@ public class ReservationRoomActivity extends AppCompatActivity {
             }
         });
     }
+
+
 
     private void getDataUsingOkHttpEnqueue() {
         OkHttpClient client = new OkHttpClient();

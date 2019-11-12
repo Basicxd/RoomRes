@@ -8,8 +8,10 @@ import androidx.core.widget.TextViewCompat;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.GestureDetector;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,6 +19,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.roomres.MODELS.Room;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
@@ -27,11 +30,13 @@ import com.google.firebase.auth.FirebaseAuthInvalidUserException;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseUser;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, GestureDetector.OnGestureListener  {
     private final String TAG = "SIGNIN";
 
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener firbaseAuthListener;
+    private GestureDetector gestureDetector;
+
 
     private EditText myPassword;
     private EditText myMail;
@@ -44,6 +49,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         if(FirebaseAuth.getInstance().getCurrentUser() != null)
             roomView(null);
+
+        gestureDetector = new GestureDetector(this, this);
+
+
+        Toolbar mTopToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(mTopToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_dehaze_black_24dp);
+
 
         findViewById(R.id.button_Register).setOnClickListener(this);
         findViewById(R.id.button_login).setOnClickListener(this);
@@ -67,6 +82,37 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         };
         updateStatus();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.login_item:
+                Intent intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
+                return true; // true: menu processing done, no further actions
+            case R.id.room_item:
+                Intent intentRoom = new Intent(this, RoomActivity.class);
+                startActivity(intentRoom);
+                return true; // true: menu processing done, no further actions
+            case R.id.reservation_item:
+                Intent intentReservation = new Intent(this, ReservationRoomActivity.class);
+                startActivity(intentReservation);
+                return true; // true: menu processing done, no further actions
+            case R.id.add_item:
+                Intent intentAdd = new Intent(this, AddReservationActivity.class);
+                startActivity(intentAdd);
+                return true; // true: menu processing done, no further actions
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     @Override
@@ -230,6 +276,56 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Intent i = new Intent(MainActivity.this, RoomActivity.class);
         //i.putStringArrayListExtra("logArray", log);
         MainActivity.this.startActivity(i);
+    }
+
+    @Override
+    public boolean onDown(MotionEvent e) {
+        return false;
+    }
+
+    @Override
+    public void onShowPress(MotionEvent e) {
+
+    }
+
+    @Override
+    public boolean onSingleTapUp(MotionEvent e) {
+        return false;
+    }
+
+    @Override
+    public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
+        return false;
+    }
+
+    @Override
+    public void onLongPress(MotionEvent e) {
+
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        // Log.d(TAG, "onTuch: " + event);
+        // boolean eventHandlingFinished = true;
+        //return eventHandlingFinished;
+        return gestureDetector.onTouchEvent(event);
+    }
+
+    @Override
+    public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+        Log.d(TAG, "onFling " + e1.toString() + "::::" + e2.toString());
+
+        boolean leftSwipe = e1.getX() > e2.getX();
+        Log.d(TAG, "onFling left: " + leftSwipe);
+        if (leftSwipe) {
+            Intent intent = new Intent(this, RoomActivity.class);
+            startActivity(intent);
+            //ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(this);
+            //Bundle options = activityOptionsCompat.toBundle();
+            //startActivity(intent, options);
+
+        }
+        return true; // done
     }
 }
 
