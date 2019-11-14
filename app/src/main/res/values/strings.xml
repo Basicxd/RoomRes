@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">RoomRes</string>
-    <string name="title_activity_room_overview">Vælge Rum</string>
+    <string name="room_activity">Vælge Rum</string>
+    <string name="forside_activity">Velkommen</string>
+    <string name="login_activity">Login</string>
+    <string name="reservation_activity">Reservationer</string>
+    <string name="addreservation_activity">Tilføj Reservation</string>
 </resources>

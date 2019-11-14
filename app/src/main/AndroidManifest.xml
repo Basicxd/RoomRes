@@ -12,32 +12,45 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".FrontPageActivity">
+        <activity
+            android:name=".FrontPageActivity"
+            android:label="@string/forside_activity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".MainActivity">
-
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/login_activity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.roomres.FrontPageActivity" />
         </activity>
 
-        <activity android:name=".RoomActivity"
-            android:label="@string/title_activity_room_overview">
-
+        <activity
+            android:name=".RoomActivity"
+            android:label="@string/room_activity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.roomres.MainActivity" />
         </activity>
 
-        <activity android:name=".ReservationRoomActivity">
+        <activity
+            android:name=".ReservationRoomActivity"
+            android:label="@string/reservation_activity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.roomres.RoomActivity" />
         </activity>
 
-        <activity android:name=".AddReservationActivity"
-            android:label="@string/title_activity_room_overview">
-
+        <activity
+            android:name=".AddReservationActivity"
+            android:label="@string/addreservation_activity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.roomres.ReservationRoomActivity" />
         </activity>
 
     </application>
