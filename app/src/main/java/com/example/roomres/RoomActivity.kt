@@ -37,6 +37,7 @@ import androidx.core.app.ComponentActivity
 import androidx.core.app.ComponentActivity.ExtraData
 import androidx.core.content.ContextCompat.getSystemService
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+import androidx.core.app.NavUtils
 
 class RoomActivity : AppCompatActivity() {
 
@@ -72,6 +73,10 @@ class RoomActivity : AppCompatActivity() {
             R.id.room_item -> {
                 val intentRoom = Intent(this, RoomActivity::class.java)
                 startActivity(intentRoom)
+                return true // true: menu processing done, no further actions
+            }
+            R.id.home -> {
+                NavUtils.navigateUpFromSameTask(this)
                 return true // true: menu processing done, no further actions
             }
             else -> return super.onOptionsItemSelected(item)

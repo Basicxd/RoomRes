@@ -3,6 +3,7 @@ package com.example.roomres;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.NavUtils;
 import androidx.core.widget.TextViewCompat;
 
 import android.content.Intent;
@@ -117,6 +118,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Intent intentRoom = new Intent(this, RoomActivity.class);
                 startActivity(intentRoom);
                 return true; // true: menu processing done, no further actions
+            case R.id.home:
+                NavUtils.navigateUpFromSameTask(this);
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
