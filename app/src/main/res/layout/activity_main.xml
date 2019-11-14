@@ -16,7 +16,8 @@
         android:elevation="4dp"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         app:layout_constraintTop_toTopOf="parent"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        />
 
     <TextView
         android:layout_width="wrap_content"
@@ -43,6 +44,10 @@
         android:layout_height="wrap_content"
         android:hint="Password"/>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/status_Textview" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -75,12 +80,14 @@
         android:id="@+id/uden_login_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Uden login" />
+        android:text="Fortsæt uden login"
+        android:visibility="visible"/>
 
-    <TextView
-        android:layout_width="wrap_content"
+    <Button
+        android:text="Videre"
+        android:id="@+id/next_button"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/status_Textview"
-        />
+        android:visibility="gone"/>
 
 </LinearLayout>

@@ -41,14 +41,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private EditText myPassword;
     private EditText myMail;
     private Button uden_login_button;
+    private Button next_button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        if(FirebaseAuth.getInstance().getCurrentUser() != null)
-            roomView(null);
+//        if(FirebaseAuth.getInstance().getCurrentUser() != null)
+//            roomView(null);
 
         gestureDetector = new GestureDetector(this, this);
 
@@ -64,6 +65,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.button_login).setOnClickListener(this);
         findViewById(R.id.button_signOut).setOnClickListener(this);
         findViewById(R.id.uden_login_button).setOnClickListener(this);
+        findViewById(R.id.next_button).setOnClickListener(this);
 
         myMail = (EditText)findViewById(R.id.email_Edittext);
         myPassword = (EditText)findViewById(R.id.password_Edittext);
@@ -82,13 +84,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         };
         updateStatus();
+
+        if (FirebaseAuth.getInstance().getCurrentUser() != null){
+            View b = findViewById(R.id.next_button);
+            b.setVisibility(View.VISIBLE);
+            View b2 = findViewById(R.id.uden_login_button);
+            b2.setVisibility(View.GONE);
+            }
     }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
+                return true;
     }
 
     @Override
@@ -126,7 +137,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (v.getId()){
             case R.id.button_login:
                 signUserIn();
-                roomView(v);
                 break;
 
             case R.id.button_Register:
@@ -137,7 +147,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 signUserOut();
                 break;
 
-            case R.id.uden_login_button:
+            case R.id.uden_login_button: case R.id.next_button:
                 roomView(v);
                 break;
         }
@@ -180,12 +190,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void signUserIn() {
         if (!checkFormFields())
             return;
-
         Log.d("TEE", "Started logging in");
 
         String email = myMail.getText().toString();
         String password = myPassword.getText().toString();
-
 
         firebaseAuth.signInWithEmailAndPassword(email,password)
                 .addOnCompleteListener(this,
@@ -193,11 +201,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
-                                    Toast.makeText(MainActivity.this, "Signed in", Toast.LENGTH_SHORT)
+                                    Toast.makeText(MainActivity.this, "Login som ", Toast.LENGTH_SHORT)
                                             .show();
+                                    finish();
+                                    startActivity(getIntent());
                                 }
                                 else {
-                                    Toast.makeText(MainActivity.this, "Sign in failed", Toast.LENGTH_SHORT)
+                                    Toast.makeText(MainActivity.this, "Failed", Toast.LENGTH_SHORT)
                                             .show();
                                 }
 
@@ -208,10 +218,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         if (e instanceof FirebaseAuthInvalidCredentialsException) {
-                            updateStatus("Invalid password.");
+                            updateStatus("Forkert Kode");
                         }
                         else if (e instanceof FirebaseAuthInvalidUserException) {
-                            updateStatus("No account with this email.");
+                            updateStatus("Ingen bruger med denne mail");
                         }
                         else {
                             updateStatus(e.getLocalizedMessage());
@@ -222,6 +232,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void signUserOut() {
         firebaseAuth.signOut();
+        finish();
+        startActivity(getIntent());
         updateStatus();
     }
 
@@ -266,7 +278,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public void roomView(View v) {
         Intent i = new Intent(MainActivity.this, RoomActivity.class);
-        //i.putStringArrayListExtra("logArray", log);
         MainActivity.this.startActivity(i);
     }
 
@@ -297,9 +308,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        // Log.d(TAG, "onTuch: " + event);
-        // boolean eventHandlingFinished = true;
-        //return eventHandlingFinished;
         return gestureDetector.onTouchEvent(event);
     }
 
