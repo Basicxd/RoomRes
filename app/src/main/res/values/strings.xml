@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">RoomRes</string>
+    <string name="title_activity_room_overview">Vælge Rum</string>
 </resources>

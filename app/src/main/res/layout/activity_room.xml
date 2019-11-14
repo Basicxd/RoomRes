@@ -8,15 +8,9 @@
     android:layout_height="match_parent"
     tools:context=".RoomActivity">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolRoom"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        android:elevation="4dp"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:layout_constraintTop_toTopOf="parent"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+    <include
+        layout="@layout/toolbar_main"
+        android:id="@+id/toolRoom"/>
 
     <ListView
         android:id="@+id/rooms_Listview"

@@ -55,6 +55,7 @@ public class AddReservationActivity extends AppCompatActivity {
         setSupportActionBar(mTopToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_black_24dp);
 
         fromdateButton = findViewById(R.id.add_fromTime_DateButton);
         fromtimeButton = findViewById(R.id.add_fromTime_Timebutton);

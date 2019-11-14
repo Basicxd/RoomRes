@@ -4,10 +4,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item android:id="@+id/frontpage_item"
-        android:title="Front Side" />
+        android:title="Forside" />
     <item android:id="@+id/login_item"
         android:title="Login Side" />
     <item android:id="@+id/room_item"
         android:title="Rum" />
+
 
 </menu>

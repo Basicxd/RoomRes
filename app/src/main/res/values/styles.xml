@@ -7,8 +7,10 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="myCustomMenuTextApearance" parent="@android:style/TextAppearance.Widget.IconMenu.Item">
-        <item name="android:textColor">@color/colorMenu</item>
+    <style name="ToolBarStyle" parent="Theme.AppCompat">
+        <item name="android:textColorSecondary">@color/colorWhite</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
     </style>
 
 </resources>
