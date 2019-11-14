@@ -55,7 +55,6 @@ public class AddReservationActivity extends AppCompatActivity {
         setSupportActionBar(mTopToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_dehaze_black_24dp);
 
         fromdateButton = findViewById(R.id.add_fromTime_DateButton);
         fromtimeButton = findViewById(R.id.add_fromTime_Timebutton);
@@ -74,6 +73,10 @@ public class AddReservationActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+            case R.id.frontpage_item:
+                Intent intentfront = new Intent(this, FrontPageActivity.class);
+                startActivity(intentfront);
+                return true; // true: menu processing done, no further actions
             case R.id.login_item:
                 Intent intent = new Intent(this, MainActivity.class);
                 startActivity(intent);

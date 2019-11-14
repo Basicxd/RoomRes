@@ -59,6 +59,11 @@ class RoomActivity : AppCompatActivity() {
     // actions on click menu items
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
+            R.id.frontpage_item -> {
+                val intentfront = Intent(this, FrontPageActivity::class.java)
+                startActivity(intentfront)
+                return true // true: menu processing done, no further actions
+            }
             R.id.login_item -> {
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
