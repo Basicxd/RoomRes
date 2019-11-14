@@ -3,6 +3,7 @@ package com.example.roomres;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.NavUtils;
+import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -26,6 +27,7 @@ public class FrontPageActivity extends AppCompatActivity implements GestureDetec
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_home_black_24dp);
+        mTopToolbar.setOverflowIcon(ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_dehaze_black_24dp));
 
         gestureDetector = new GestureDetector(this, this);
     }

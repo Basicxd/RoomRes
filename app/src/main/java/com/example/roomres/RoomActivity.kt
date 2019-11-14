@@ -25,6 +25,7 @@ import okhttp3.Response
 import kotlinx.android.synthetic.main.activity_reservationroom.*
 import kotlinx.android.synthetic.main.activity_room.*
 import androidx.core.app.NavUtils
+import androidx.core.content.ContextCompat
 
 class RoomActivity : AppCompatActivity() {
 
@@ -35,6 +36,7 @@ class RoomActivity : AppCompatActivity() {
         setSupportActionBar(toolRoom as Toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_arrow_back_black_24dp)
+        (toolRoom as Toolbar).setOverflowIcon(ContextCompat.getDrawable(applicationContext, R.drawable.ic_dehaze_black_24dp))
 
         getDataUsingOkHttpEnqueue()
     }

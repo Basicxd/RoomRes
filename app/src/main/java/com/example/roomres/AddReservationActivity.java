@@ -3,6 +3,7 @@ package com.example.roomres;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.NavUtils;
+import androidx.core.content.ContextCompat;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
@@ -55,6 +56,7 @@ public class AddReservationActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_black_24dp);
+        mTopToolbar.setOverflowIcon(ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_dehaze_black_24dp));
 
         fromdateButton = findViewById(R.id.add_fromTime_DateButton);
         fromtimeButton = findViewById(R.id.add_fromTime_Timebutton);

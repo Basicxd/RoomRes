@@ -56,6 +56,7 @@ public class ReservationRoomActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_black_24dp);
+        mTopToolbar.setOverflowIcon(ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_dehaze_black_24dp));
 
         Intent intent = getIntent();
         room = (Room) intent.getSerializableExtra(ROOM);

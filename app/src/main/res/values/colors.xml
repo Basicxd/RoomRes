@@ -7,4 +7,8 @@
     <color name="colorMenu">#673AB7</color>
     <color name="colorWhite">#FFFFFF</color>
     <color name="colorBlack">#000000</color>
+    <color name="colorGrey">#747474</color>
+    <color name="colorZealand">#faee84</color>
+    <color name="colorZealandDark">#f7e64c</color>
+<!--    #faee84-->
 </resources>
