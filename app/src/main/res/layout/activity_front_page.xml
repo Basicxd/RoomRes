@@ -25,6 +25,7 @@
         android:layout_gravity="center"/>
 
     z<ImageView
+        android:id="@+id/swipingMotion"
         android:layout_width="170dp"
         android:layout_height="170dp"
         android:layout_gravity="center"
