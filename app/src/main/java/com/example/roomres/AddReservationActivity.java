@@ -25,7 +25,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.sql.Time;
 import java.text.DateFormat;
 import java.util.Calendar;
 
@@ -45,7 +44,6 @@ public class AddReservationActivity extends AppCompatActivity {
     private Button totimeButton;
 
     public static final String ROOMID = "ROOMID";
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +65,6 @@ public class AddReservationActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
@@ -78,15 +75,15 @@ public class AddReservationActivity extends AppCompatActivity {
             case R.id.frontpage_item:
                 Intent intentfront = new Intent(this, FrontPageActivity.class);
                 startActivity(intentfront);
-                return true; // true: menu processing done, no further actions
+                return true;
             case R.id.login_item:
                 Intent intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
-                return true; // true: menu processing done, no further actions
+                return true;
             case R.id.room_item:
                 Intent intentRoom = new Intent(this, RoomActivity.class);
                 startActivity(intentRoom);
-                return true; // true: menu processing done, no further actions
+                return true;
             case R.id.home:
                 NavUtils.navigateUpFromSameTask(this);
                 return true;

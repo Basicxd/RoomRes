@@ -25,16 +25,13 @@ public class FrontPageActivity extends AppCompatActivity implements GestureDetec
         setSupportActionBar(mTopToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_black_24dp);
-
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_home_black_24dp);
 
         gestureDetector = new GestureDetector(this, this);
-
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
@@ -45,15 +42,15 @@ public class FrontPageActivity extends AppCompatActivity implements GestureDetec
             case R.id.frontpage_item:
                 Intent intentfront = new Intent(this, FrontPageActivity.class);
                 startActivity(intentfront);
-                return true; // true: menu processing done, no further actions
+                return true;
             case R.id.login_item:
                 Intent intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
-                return true; // true: menu processing done, no further actions
+                return true;
             case R.id.room_item:
                 Intent intentRoom = new Intent(this, RoomActivity.class);
                 startActivity(intentRoom);
-                return true; // true: menu processing done, no further actions
+                return true;
             case R.id.home:
                 NavUtils.navigateUpFromSameTask(this);
                 return true;
@@ -68,9 +65,7 @@ public class FrontPageActivity extends AppCompatActivity implements GestureDetec
     }
 
     @Override
-    public void onShowPress(MotionEvent e) {
-
-    }
+    public void onShowPress(MotionEvent e) { }
 
     @Override
     public boolean onSingleTapUp(MotionEvent e) {
@@ -78,20 +73,13 @@ public class FrontPageActivity extends AppCompatActivity implements GestureDetec
     }
 
     @Override
-    public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
-        return false;
-    }
+    public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) { return false; }
 
     @Override
-    public void onLongPress(MotionEvent e) {
-
-    }
+    public void onLongPress(MotionEvent e) { }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        // Log.d(TAG, "onTuch: " + event);
-        // boolean eventHandlingFinished = true;
-        //return eventHandlingFinished;
         return gestureDetector.onTouchEvent(event);
     }
 
@@ -104,11 +92,7 @@ public class FrontPageActivity extends AppCompatActivity implements GestureDetec
         if (leftSwipe) {
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
-            //ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(this);
-            //Bundle options = activityOptionsCompat.toBundle();
-            //startActivity(intent, options);
-
         }
-        return true; // done
+        return true;
     }
 }

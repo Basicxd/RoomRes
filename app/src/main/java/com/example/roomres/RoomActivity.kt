@@ -8,16 +8,11 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.ListView
-import android.widget.TextView
 import android.widget.Toast
 
-
 import com.example.roomres.MODELS.Room
-import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 
 import java.io.IOException
@@ -27,16 +22,8 @@ import okhttp3.Callback
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.Response
-import androidx.core.content.ContextCompat.getSystemService
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import kotlinx.android.synthetic.main.activity_reservationroom.*
 import kotlinx.android.synthetic.main.activity_room.*
-import androidx.core.content.ContextCompat.getSystemService
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
-import androidx.core.app.ComponentActivity
-import androidx.core.app.ComponentActivity.ExtraData
-import androidx.core.content.ContextCompat.getSystemService
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import androidx.core.app.NavUtils
 
 class RoomActivity : AppCompatActivity() {
@@ -57,27 +44,26 @@ class RoomActivity : AppCompatActivity() {
         return super.onCreateOptionsMenu(menu)
     }
 
-    // actions on click menu items
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.frontpage_item -> {
                 val intentfront = Intent(this, FrontPageActivity::class.java)
                 startActivity(intentfront)
-                return true // true: menu processing done, no further actions
+                return true
             }
             R.id.login_item -> {
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
-                return true // true: menu processing done, no further actions
+                return true
             }
             R.id.room_item -> {
                 val intentRoom = Intent(this, RoomActivity::class.java)
                 startActivity(intentRoom)
-                return true // true: menu processing done, no further actions
+                return true
             }
             R.id.home -> {
                 NavUtils.navigateUpFromSameTask(this)
-                return true // true: menu processing done, no further actions
+                return true
             }
             else -> return super.onOptionsItemSelected(item)
         }
@@ -132,7 +118,5 @@ class RoomActivity : AppCompatActivity() {
     companion object {
         val URI = "http://anbo-roomreservationv3.azurewebsites.net/api/rooms"
     }
-
-
 }
 

@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.NavUtils;
-import androidx.core.widget.TextViewCompat;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,11 +15,9 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.roomres.MODELS.Room;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
@@ -38,7 +35,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private FirebaseAuth.AuthStateListener firbaseAuthListener;
     private GestureDetector gestureDetector;
 
-
     private EditText myPassword;
     private EditText myMail;
     private Button uden_login_button;
@@ -54,13 +50,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         gestureDetector = new GestureDetector(this, this);
 
-
         Toolbar mTopToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mTopToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_black_24dp);
-
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_home_black_24dp);
 
         findViewById(R.id.button_Register).setOnClickListener(this);
         findViewById(R.id.button_login).setOnClickListener(this);
@@ -94,11 +88,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
     }
 
-
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
                 return true;
     }
@@ -109,15 +100,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.frontpage_item:
                 Intent intentfront = new Intent(this, FrontPageActivity.class);
                 startActivity(intentfront);
-                return true; // true: menu processing done, no further actions
+                return true;
             case R.id.login_item:
                 Intent intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
-                return true; // true: menu processing done, no further actions
+                return true;
             case R.id.room_item:
                 Intent intentRoom = new Intent(this, RoomActivity.class);
                 startActivity(intentRoom);
-                return true; // true: menu processing done, no further actions
+                return true;
             case R.id.home:
                 NavUtils.navigateUpFromSameTask(this);
                 return true;
@@ -175,7 +166,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             myPassword.setError("Mangler Password");
             return false;
         }
-
         return true;
     }
 
@@ -295,9 +285,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     @Override
-    public void onShowPress(MotionEvent e) {
-
-    }
+    public void onShowPress(MotionEvent e) { }
 
     @Override
     public boolean onSingleTapUp(MotionEvent e) {
@@ -305,14 +293,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     @Override
-    public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
-        return false;
-    }
+    public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) { return false; }
 
     @Override
-    public void onLongPress(MotionEvent e) {
-
-    }
+    public void onLongPress(MotionEvent e) { }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
@@ -328,12 +312,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (leftSwipe) {
             Intent intent = new Intent(this, RoomActivity.class);
             startActivity(intent);
-            //ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(this);
-            //Bundle options = activityOptionsCompat.toBundle();
-            //startActivity(intent, options);
-
         }
-        return true; // done
+        return true;
     }
 }
 
