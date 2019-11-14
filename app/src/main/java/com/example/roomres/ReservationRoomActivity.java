@@ -51,6 +51,12 @@ public class ReservationRoomActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reservationroom);
 
+        Toolbar mTopToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(mTopToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_dehaze_black_24dp);
+
         Intent intent = getIntent();
         room = (Room) intent.getSerializableExtra(ROOM);
 
@@ -79,14 +85,6 @@ public class ReservationRoomActivity extends AppCompatActivity {
             case R.id.room_item:
                 Intent intentRoom = new Intent(this, RoomActivity.class);
                 startActivity(intentRoom);
-                return true; // true: menu processing done, no further actions
-            case R.id.reservation_item:
-                Intent intentReservation = new Intent(this, ReservationRoomActivity.class);
-                startActivity(intentReservation);
-                return true; // true: menu processing done, no further actions
-            case R.id.add_item:
-                Intent intentAdd = new Intent(this, AddReservationActivity.class);
-                startActivity(intentAdd);
                 return true; // true: menu processing done, no further actions
             default:
                 return super.onOptionsItemSelected(item);

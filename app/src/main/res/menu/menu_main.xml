@@ -7,10 +7,5 @@
         android:title="Login Page" />
     <item android:id="@+id/room_item"
         android:title="Rooms" />
-    <item android:id="@+id/reservation_item"
-        android:title="Reservation" />
-    <item android:id="@+id/add_item"
-        android:title="Add Reservation" />
-
 
 </menu>

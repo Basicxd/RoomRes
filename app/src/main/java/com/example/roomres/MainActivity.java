@@ -102,14 +102,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Intent intentRoom = new Intent(this, RoomActivity.class);
                 startActivity(intentRoom);
                 return true; // true: menu processing done, no further actions
-            case R.id.reservation_item:
-                Intent intentReservation = new Intent(this, ReservationRoomActivity.class);
-                startActivity(intentReservation);
-                return true; // true: menu processing done, no further actions
-            case R.id.add_item:
-                Intent intentAdd = new Intent(this, AddReservationActivity.class);
-                startActivity(intentAdd);
-                return true; // true: menu processing done, no further actions
             default:
                 return super.onOptionsItemSelected(item);
         }

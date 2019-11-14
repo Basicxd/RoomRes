@@ -69,16 +69,6 @@ class RoomActivity : AppCompatActivity() {
                 startActivity(intentRoom)
                 return true // true: menu processing done, no further actions
             }
-            R.id.reservation_item -> {
-                val intentReservation = Intent(this, ReservationRoomActivity::class.java)
-                startActivity(intentReservation)
-                return true // true: menu processing done, no further actions
-            }
-            R.id.add_item -> {
-                val intentAdd = Intent(this, AddReservationActivity::class.java)
-                startActivity(intentAdd)
-                return true // true: menu processing done, no further actions
-            }
             else -> return super.onOptionsItemSelected(item)
         }
     }
