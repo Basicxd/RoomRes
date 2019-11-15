@@ -66,6 +66,11 @@ public class ReservationRoomActivity extends AppCompatActivity {
 
         TextView roomLabelTxtView = findViewById(R.id.roomName);
         roomLabelTxtView.setText(room.toString());
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
         getDataUsingOkHttpEnqueue();
     }
 
